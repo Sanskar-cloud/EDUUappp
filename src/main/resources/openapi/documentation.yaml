@@ -4,7 +4,7 @@ info:
   description: "Application API"
   version: "1.0.0"
 servers:
-  - url: "https://brainbyte-j9rs.onrender.com"
+  - url: "http://192.168.29.108:8082"
 paths:
   /api/user/create:
     post:
@@ -68,7 +68,101 @@ paths:
             application/json:
               schema:
                 type: "object"
-
+  /api/course/popular_categories:
+    get:
+      summary: "Get popular categories"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+  /api/course/category/create:
+    post:
+      summary: "Create a new category"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                categoryName:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+  /api/course/category/update:
+    post:
+      summary: "Update an existing category"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: categoryId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                categoryName:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+  /api/course/category/delete:
+    delete:
+      summary: "Delete an existing category"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: categoryId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
 components:
   schemas:
     CreateAccountRequest:
@@ -77,6 +171,10 @@ components:
         email:
           type: "string"
         password:
+          type: "string"
+        username:
+          type: "string"
+        accountType:
           type: "string"
     LoginRequest:
       type: "object"
