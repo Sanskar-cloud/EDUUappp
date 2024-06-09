@@ -113,6 +113,26 @@ dependencies {
     implementation("io.ktor:ktor-client-json:1.6.4")
     implementation("io.ktor:ktor-client-serialization:1.6.4")
 
+        implementation("io.ktor:ktor-server-core:$ktor_version")
+        implementation("io.ktor:ktor-server-netty:$ktor_version")
+        implementation("io.ktor:ktor-server-cors:$ktor_version")
+        // other dependencies
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-swagger-jvm")
+    implementation("io.ktor:ktor-server-openapi")
+    implementation("io.ktor:ktor-server-cors-jvm")
+    implementation("io.ktor:ktor-server-webjars-jvm")
+    implementation("org.webjars:jquery:3.2.1")
+    implementation("io.github.smiley4:ktor-swagger-ui:2.9.0")
+    implementation("io.ktor:ktor-server-auth-jvm")
+    implementation("io.ktor:ktor-server-auth-jwt-jvm")
+    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-server-config-yaml")
+    testImplementation("io.ktor:ktor-server-tests-jvm")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+
 //        implementation("io.ktor:ktor-server-core:$ktor_version")
 //        implementation("io.ktor:ktor-server-netty:$ktor_version")
 //        implementation("io.ktor:ktor-swagger:$ktor_version")

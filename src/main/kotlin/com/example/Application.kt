@@ -8,7 +8,15 @@ import com.example.plugins.*
 import com.example.util.Constants.DATABASE_NAME
 import com.example.util.security.token.TokenConfig
 import com.mongodb.kotlin.client.coroutine.MongoClient
+import io.ktor.http.*
 import io.ktor.server.application.*
+
+import io.ktor.server.application.*
+import io.ktor.server.plugins.cors.*
+import io.ktor.server.plugins.cors.CORS
+import io.ktor.server.plugins.cors.routing.*
+
+
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,6 +27,11 @@ fun main(args: Array<String>) {
 @Suppress("unused")
 @OptIn(DelicateCoroutinesApi::class)
 fun Application.module() {
+
+
+
+
+
 
     val tokenConfig = TokenConfig(
         issuer = environment.config.property("jwt.issuer").getString(),
@@ -32,6 +45,7 @@ fun Application.module() {
     configureRouting()
     configureSerialization()
     configureMonitoring()
+    configureHTTP()
 
 
 

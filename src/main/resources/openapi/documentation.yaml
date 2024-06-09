@@ -1,0 +1,101 @@
+openapi: "3.0.3"
+info:
+  title: "Application API"
+  description: "Application API"
+  version: "1.0.0"
+servers:
+  - url: "https://brainbyte-j9rs.onrender.com"
+paths:
+  /api/user/create:
+    post:
+      summary: "Create a user account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAccountRequest"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BasicApiResponse"
+  /api/user/login:
+    post:
+      summary: "Login user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BasicApiResponse"
+  /api/user/reset_password:
+    post:
+      summary: "Reset user password"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordRequest"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BasicApiResponse"
+  /api/user/authenticate:
+    get:
+      summary: "Authenticate user"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+
+components:
+  schemas:
+    CreateAccountRequest:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+    LoginRequest:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+    ResetPasswordRequest:
+      type: "object"
+      properties:
+        oldPassword:
+          type: "string"
+        newPassword:
+          type: "string"
+    BasicApiResponse:
+      type: "object"
+      properties:
+        successful:
+          type: "boolean"
+        message:
+          type: "string"
